@@ -88,6 +88,23 @@ The simulation includes:
 
 AI-generated suggestions were reviewed and adapted before being included in the final project.
 
+## Development Progress
+
+### Day 1 - Project Setup
+
+The initial EcoDash project structure was organised and added to the GitHub repository. The README was created to document the project purpose, technologies, setup instructions, project modules and AI usage.
+
+### Day 2 - Vehicle Movement and Acceleration
+
+The vehicle movement system was improved to provide consistent movement in different directions. Directional keyboard input is converted into a movement vector and normalised before being converted into acceleration.
+
+This prevents diagonal movement from receiving a larger input magnitude than horizontal or vertical movement.
+
+The vehicle continues to use velocity, acceleration and drag to create smoother movement. Wind effects are also applied to the vehicle's acceleration, allowing environmental conditions to influence the vehicle's movement.
+
+The movement system uses vector mathematics to calculate the magnitude of the input direction.
+
+
 ## Author
 
 STADIO Higher Education Student
