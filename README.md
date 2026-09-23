@@ -104,6 +104,22 @@ The vehicle continues to use velocity, acceleration and drag to create smoother 
 
 The movement system uses vector mathematics to calculate the magnitude of the input direction.
 
+### Day 3 - Vector Mathematics and Vehicle Physics
+
+The vehicle physics system was improved by adding reusable vector calculations for speed and direction.
+
+The magnitude of the velocity vector is calculated using the formula:
+
+Speed = √(Vx² + Vy²)
+
+where Vx represents horizontal velocity and Vy represents vertical velocity.
+
+The direction of the vehicle is calculated using the JavaScript `Math.atan2()` function. This determines the angle of the velocity vector based on the horizontal and vertical components.
+
+A terrain speed modifier is also applied to limit the vehicle's maximum speed in difficult terrain. The vehicle's speed is recalculated after the terrain limit is applied so that distance travelled and battery consumption use the updated movement speed.
+
+These calculations connect the JavaScript implementation to the mathematical and physics concepts required by the EcoDash simulation.
+
 
 ## Author
 

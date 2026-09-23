@@ -41,8 +41,31 @@ export class DeliveryVehicle {
 
     }
 
+    // Calculate the magnitude of the velocity vector.
+// Speed = √(Vx² + Vy²)
+getSpeed() {
 
-    update(keys, weather, terrainModifier = 1) {
+    return Math.sqrt(
+        this.velocityX ** 2 +
+        this.velocityY ** 2
+    );
+
+}
+
+
+// Calculate the direction of the velocity vector.
+// atan2 is used to determine the angle of movement.
+getDirection() {
+
+    return Math.atan2(
+        this.velocityY,
+        this.velocityX
+    );
+
+}
+
+
+    update(keys, weather, terrainModifier = 1) { 
 
         let inputX = 0;
 let inputY = 0;
@@ -125,27 +148,25 @@ let accelerationY =
         */
 
         const speedLimit =
-            this.maxSpeed * terrainModifier;
+    this.maxSpeed * terrainModifier;
 
 
-        const currentSpeed =
-            Math.sqrt(
-                this.velocityX ** 2 +
-                this.velocityY ** 2
-            );
+let currentSpeed = this.getSpeed();
 
 
-        if (currentSpeed > speedLimit) {
+if (currentSpeed > speedLimit) {
 
-            const scale =
-                speedLimit / currentSpeed;
+    const scale =
+        speedLimit / currentSpeed;
 
-            this.velocityX *= scale;
+    this.velocityX *= scale;
 
-            this.velocityY *= scale;
+    this.velocityY *= scale;
 
-        }
+}
 
+// Recalculate speed after applying the terrain limit.
+currentSpeed = this.getSpeed();
 
         /*
             POSITION
@@ -167,13 +188,10 @@ let accelerationY =
 
         if (currentSpeed > 0.1) {
 
-            this.angle =
-                Math.atan2(
-                    this.velocityY,
-                    this.velocityX
-                );
+    this.angle =
+        this.getDirection();
 
-        }
+}
 
 
         /*
