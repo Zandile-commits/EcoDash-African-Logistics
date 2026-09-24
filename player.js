@@ -276,6 +276,231 @@ currentSpeed = this.getSpeed();
 
 
     draw(context) {
+         /*
+        COLLISION VISUAL FEEDBACK
+
+        The vehicle flashes and displays
+        a white ring when a collision occurs.
+    */
+
+    const collisionFlash =
+        this.flashTimer > 0;
+
+
+    context.save();
+
+
+    context.translate(
+        this.x,
+        this.y
+    );
+
+
+    context.rotate(
+        this.angle + Math.PI / 2
+    );
+
+
+    /*
+        VEHICLE FLASH
+
+        The vehicle becomes transparent
+        for a short period after a collision.
+    */
+
+    if (
+        this.flashTimer > 0 &&
+        Math.floor(
+            this.flashTimer / 5
+        ) % 2 === 0
+    ) {
+
+        context.globalAlpha = 0.45;
+
+    }
+
+
+    /*
+        VEHICLE SHADOW
+    */
+
+    context.fillStyle =
+        "rgba(0,0,0,.3)";
+
+    context.beginPath();
+
+    context.ellipse(
+        0,
+        10,
+        25,
+        35,
+        0,
+        0,
+        Math.PI * 2
+    );
+
+    context.fill();
+
+
+    /*
+        VEHICLE BODY
+    */
+
+    context.fillStyle =
+        "#17251d";
+
+    context.beginPath();
+
+    context.roundRect(
+        -this.width / 2,
+        -this.height / 2,
+        this.width,
+        this.height,
+        12
+    );
+
+    context.fill();
+
+
+    /*
+        GREEN SOLAR ROOF
+    */
+
+    context.fillStyle =
+        "#b7f34a";
+
+    context.beginPath();
+
+    context.roundRect(
+        -15,
+        -27,
+        30,
+        19,
+        7
+    );
+
+    context.fill();
+
+
+    /*
+        WINDOW
+    */
+
+    context.fillStyle =
+        "#d9f4df";
+
+    context.beginPath();
+
+    context.roundRect(
+        -11,
+        -23,
+        22,
+        10,
+        4
+    );
+
+    context.fill();
+
+
+    /*
+        LIGHTS
+    */
+
+    context.fillStyle =
+        "#ff9f1c";
+
+    context.fillRect(
+        -13,
+        21,
+        9,
+        4
+    );
+
+    context.fillRect(
+        4,
+        21,
+        9,
+        4
+    );
+
+
+    /*
+        WHEELS
+    */
+
+    context.fillStyle =
+        "#090f0b";
+
+    context.fillRect(
+        -23,
+        -17,
+        5,
+        13
+    );
+
+    context.fillRect(
+        18,
+        -17,
+        5,
+        13
+    );
+
+    context.fillRect(
+        -23,
+        8,
+        5,
+        13
+    );
+
+    context.fillRect(
+        18,
+        8,
+        5,
+        13
+    );
+
+
+    /*
+        COLLISION RING
+
+        A visible ring is drawn around
+        the vehicle when a collision occurs.
+    */
+
+    if (collisionFlash) {
+
+        context.globalAlpha = 1;
+
+        context.strokeStyle =
+            "#ffffff";
+
+        context.lineWidth = 4;
+
+        context.beginPath();
+
+        context.arc(
+            0,
+            0,
+            38,
+            0,
+            Math.PI * 2
+        );
+
+        context.stroke();
+
+    }
+
+
+    context.restore();
+
+}
+
+
+
+    getBounds() {
+
+        const collisionFlash =
+    this.flashTimer > 0;
 
         context.save();
 
@@ -296,7 +521,8 @@ currentSpeed = this.getSpeed();
             Math.floor(
                 this.flashTimer / 5
             ) % 2 === 0
-        ) {
+        ) 
+        {
 
             context.globalAlpha = 0.45;
 
@@ -445,10 +671,7 @@ currentSpeed = this.getSpeed();
 
         context.restore();
 
-    }
-
-
-    getBounds() {
+    
 
         return {
 
