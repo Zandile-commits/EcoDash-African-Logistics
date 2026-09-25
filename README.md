@@ -120,6 +120,33 @@ A terrain speed modifier is also applied to limit the vehicle's maximum speed in
 
 These calculations connect the JavaScript implementation to the mathematical and physics concepts required by the EcoDash simulation.
 
+### Day 4 - Environmental Obstacles and Collision Detection
+
+The environmental obstacle and collision system was improved and documented.
+
+EcoDash uses two collision detection methods. Axis-Aligned Bounding Box (AABB) collision is used for rectangular obstacles such as potholes and construction zones. Circular collision detection is used for environmental objects such as wildlife, trees, rivers and load-shedding zones.
+
+The circular collision calculation uses the distance formula:
+
+d = √((x₂ - x₁)² + (y₂ - y₁)²)
+
+When a collision is detected, the obstacle is marked as hit and the appropriate effect is applied to the vehicle. These effects can include reduced velocity, battery loss or a reduction in score.
+
+Visual collision feedback was also added so that the player receives an immediate indication when the vehicle hits an obstacle.
+
+### Day 5 - Weather and Environmental Effects
+
+The weather system was improved to make environmental conditions more noticeable during gameplay.
+
+Wind is represented as a vector containing horizontal and vertical components. The strength of the wind is calculated using the magnitude of the vector:
+
+Wind Strength = √(Wx² + Wy²)
+
+The weather system can influence the movement of the delivery vehicle by applying wind forces to its acceleration.
+
+A visual wind-strength indicator was also added to help show the effect of environmental conditions during the simulation.
+
+This connects the weather system to the physics concepts used in the EcoDash project and demonstrates how environmental conditions can affect logistics movement.
 
 ## Author
 
