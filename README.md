@@ -148,6 +148,20 @@ A visual wind-strength indicator was also added to help show the effect of envir
 
 This connects the weather system to the physics concepts used in the EcoDash project and demonstrates how environmental conditions can affect logistics movement.
 
+### Day 6 - Battery Consumption and Energy Management
+
+The battery system was improved to provide better energy management during vehicle movement.
+
+Energy consumption is calculated using the vehicle's current speed and the weather energy modifier:
+
+Energy Consumption = Speed × Base Consumption × Weather Modifier
+
+The system now prevents the battery value from becoming negative. The actual amount of energy removed from the battery is calculated using the available battery level.
+
+When the battery reaches zero, the vehicle stops moving. This creates a clearer relationship between vehicle movement, environmental conditions and available energy.
+
+This feature represents the energy limitations that can affect vehicles travelling long distances in logistics environments.
+
 ## Author
 
 STADIO Higher Education Student

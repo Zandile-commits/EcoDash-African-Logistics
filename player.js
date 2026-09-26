@@ -115,6 +115,7 @@ let accelerationY =
 
             Wind affects horizontal movement.
         */
+       
 
         accelerationX += weather.wind.x * 0.008;
 
@@ -209,21 +210,67 @@ currentSpeed = this.getSpeed();
             BATTERY CONSUMPTION
         */
 
-        const energyConsumption =
-            currentSpeed *
-            0.006 *
-            weather.energyModifier;
+        /*
+    BATTERY AND ENERGY MANAGEMENT
 
-        this.battery -= energyConsumption;
+    Energy consumption increases with
+    vehicle speed and difficult weather.
 
-        this.energyUsed += energyConsumption;
+    Energy Consumption =
+    Speed × Base Consumption × Weather Modifier
+*/
+
+const energyConsumption =
+    currentSpeed *
+    0.006 *
+    weather.energyModifier;
 
 
-        this.flashTimer =
-            Math.max(
-                0,
-                this.flashTimer - 1
-            );
+/*
+    Prevent the battery from going
+    below zero.
+
+    Only the available battery energy
+    is counted as energy used.
+*/
+
+const actualEnergyUsed =
+    Math.min(
+        energyConsumption,
+        this.battery
+    );
+
+this.battery -= actualEnergyUsed;
+
+this.energyUsed += actualEnergyUsed;
+
+
+/*
+    Stop the vehicle when the battery
+    has been completely depleted.
+*/
+
+if (
+    this.battery <= 0
+) {
+
+    this.battery = 0;
+
+    this.velocityX = 0;
+    this.velocityY = 0;
+
+}
+
+
+/*
+    Reduce collision flash timer.
+*/
+
+this.flashTimer =
+    Math.max(
+        0,
+        this.flashTimer - 1
+    );
 
     }
 
